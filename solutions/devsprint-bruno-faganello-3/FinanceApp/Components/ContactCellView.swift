@@ -46,7 +46,7 @@ class ContactCellView: UITableViewCell {
     lazy var contactPhoneLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .gray
+        label.textColor = .systemGray
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
         label.text = "(11) 99999-9999"

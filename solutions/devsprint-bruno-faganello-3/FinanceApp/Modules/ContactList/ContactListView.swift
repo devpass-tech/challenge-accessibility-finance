@@ -33,12 +33,9 @@ class ContactListView: UIView {
 
     init() {
         super.init(frame: .zero)
-
-        backgroundColor = .white
         addSubviews()
         configureConstraints()
-
-        tableView.reloadData()
+        configureStyle()
     }
 
     required init?(coder: NSCoder) {
@@ -62,6 +59,11 @@ extension ContactListView {
             tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+    
+    func configureStyle() {
+        backgroundColor = .systemBackground
+        tableView.reloadData()
     }
 }
 
