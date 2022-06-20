@@ -37,7 +37,8 @@ class ContactCellView: UITableViewCell {
     lazy var contactNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.font = .preferredFont(forTextStyle: .title3)
+        label.adjustsFontForContentSizeCategory = true
         label.text = "Contact Name"
         return label
     }()
@@ -46,7 +47,8 @@ class ContactCellView: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         label.text = "(11) 99999-9999"
         return label
     }()
