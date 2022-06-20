@@ -32,6 +32,7 @@ final class ContactCellView: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .title3)
         label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 0
         label.text = "Contact Name"
         return label
     }()
@@ -42,6 +43,7 @@ final class ContactCellView: UITableViewCell {
         label.textColor = .systemGray
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 0
         label.text = "(11) 99999-9999"
         return label
     }()
@@ -60,7 +62,7 @@ final class ContactCellView: UITableViewCell {
 
 extension ContactCellView {
     func addSubviews() {
-        addSubview(mainStackView)
+        contentView.addSubview(mainStackView)
         mainStackView.addArrangedSubview(avatarImageView)
         mainStackView.addArrangedSubview(labelsStackView)
         labelsStackView.addArrangedSubview(contactNameLabel)
@@ -69,10 +71,10 @@ extension ContactCellView {
 
     func configureConstraints() {
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: topAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             avatarImageView.widthAnchor.constraint(equalToConstant: 50),
             avatarImageView.heightAnchor.constraint(equalToConstant: 50)
         ])

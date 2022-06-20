@@ -18,6 +18,7 @@ class ContactListView: UIView {
         tableView.register(ContactCellView.self, forCellReuseIdentifier: self.cellIdentifier)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.estimatedRowHeight = UITableView.automaticDimension
         return tableView
     }()
 
@@ -65,10 +66,6 @@ extension ContactListView: UITableViewDataSource {
 }
 
 extension ContactListView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        ContactListView.cellSize
-    }
-
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         delegate?.didSelectContact()
