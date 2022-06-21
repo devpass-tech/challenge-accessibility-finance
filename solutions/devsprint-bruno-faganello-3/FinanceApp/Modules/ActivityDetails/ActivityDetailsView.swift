@@ -24,7 +24,7 @@ class ActivityDetailsView: UIView {
         stackView.axis = .vertical
         stackView.spacing = 8
         stackView.distribution = .fill
-        
+        stackView.isAccessibilityElement = false
         return stackView
     }()
 
@@ -41,6 +41,8 @@ class ActivityDetailsView: UIView {
 
         let label = UILabel()
         label.text = "Mall"
+        label.accessibilityLabel = "Mall"
+        label.isAccessibilityElement = true
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 17)
         return label
@@ -50,6 +52,9 @@ class ActivityDetailsView: UIView {
 
         let label = UILabel()
         label.text = "Shopping"
+        label.isAccessibilityElement = true
+        label.accessibilityLabel = "Shopping"
+        label.accessibilityTraits = .staticText
         label.textAlignment = .center
         return label
     }()
@@ -65,6 +70,9 @@ class ActivityDetailsView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "$100"
+        label.accessibilityLabel = "100 reais"
+        label.isAccessibilityElement = true
+        label.accessibilityTraits = .staticText
         label.font = UIFont.boldSystemFont(ofSize: 34)
         return label
     }()
@@ -74,6 +82,9 @@ class ActivityDetailsView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "8:57 AM"
+        label.accessibilityLabel = "8:57 da manhã"
+        label.isAccessibilityElement = true
+        label.accessibilityTraits = .staticText
         return label
     }()
 
@@ -86,6 +97,8 @@ class ActivityDetailsView: UIView {
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 14
         button.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
+        button.isAccessibilityElement = true
+        button.accessibilityTraits = .button
         return button
     }()
 
