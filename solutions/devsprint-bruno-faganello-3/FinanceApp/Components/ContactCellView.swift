@@ -1,13 +1,6 @@
-//
-//  ContactCellView.swift
-//  FinanceApp
-//
-//  Created by Rodrigo Borges on 30/12/21.
-//
-
 import UIKit
 
-class ContactCellView: UITableViewCell {
+final class ContactCellView: UITableViewCell {
 
    private var mainStackView: UIStackView = {
        let stack = UIStackView(frame: .zero)
@@ -37,7 +30,9 @@ class ContactCellView: UITableViewCell {
     lazy var contactNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.font = .preferredFont(forTextStyle: .title3)
+        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 0
         label.text = "Contact Name"
         return label
     }()
@@ -45,18 +40,19 @@ class ContactCellView: UITableViewCell {
     lazy var contactPhoneLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .systemGray
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 0
         label.text = "(11) 99999-9999"
         return label
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.accessoryType = .disclosureIndicator
-
         addSubviews()
         configureConstraints()
+        configureStyle()
     }
 
     required init?(coder: NSCoder) {
@@ -65,29 +61,27 @@ class ContactCellView: UITableViewCell {
 }
 
 extension ContactCellView {
-
     func addSubviews() {
-
-        addSubview(mainStackView)
+        contentView.addSubview(mainStackView)
         mainStackView.addArrangedSubview(avatarImageView)
         mainStackView.addArrangedSubview(labelsStackView)
-
         labelsStackView.addArrangedSubview(contactNameLabel)
         labelsStackView.addArrangedSubview(contactPhoneLabel)
     }
 
     func configureConstraints() {
-
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: topAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-
-            self.avatarImageView.widthAnchor.constraint(equalToConstant: 50),
-            self.avatarImageView.heightAnchor.constraint(equalToConstant: 50),
-
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 50),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+    
+    func configureStyle() {
+        accessoryType = .disclosureIndicator
     }
 }
 
