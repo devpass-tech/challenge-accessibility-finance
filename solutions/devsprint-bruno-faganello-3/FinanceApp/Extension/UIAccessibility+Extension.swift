@@ -14,6 +14,6 @@ extension UIAccessibility {
     }
     
     static func announce(_ value: AnnouncementText) {
-        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: value)
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: value.rawValue)
     }
 }
