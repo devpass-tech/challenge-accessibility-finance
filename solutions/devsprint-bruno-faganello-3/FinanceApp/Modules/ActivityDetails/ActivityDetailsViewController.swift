@@ -7,26 +7,45 @@
 
 import UIKit
 
-class ActivityDetailsViewController: UIViewController {
+final class ActivityDetailsViewController: UIViewController {
+    
+    // MARK: - Private Properties
+    
+    private let titleMessage: String = "Report an issue"
+    private let message: String = "The issue was reported"
+    private let titleMessageButton: String = "Thanks!"
 
-    lazy var activityDetailsView: ActivityDetailsView = {
+    private lazy var activityDetailsView: ActivityDetailsView = {
 
         let activityDetailsView = ActivityDetailsView()
         activityDetailsView.delegate = self
         return activityDetailsView
     }()
+    
+    // MARK: - LifeCycle
 
-    override func loadView() {
-        self.view = activityDetailsView
-    }
+    override func loadView() { self.view = activityDetailsView }
 }
+
+// MARK: - Extension
 
 extension ActivityDetailsViewController: ActivityDetailsViewDelegate {
 
     func didPressReportButton() {
-
-        let alertViewController = UIAlertController(title: "Report an issue", message: "The issue was reported", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Thanks", style: .default)
+        
+        let value: String = "Botão clicado"
+        UIAccessibility.announce(value)
+        
+        let alertViewController = UIAlertController(title: titleMessage,
+                                                    message: message,
+                                                    preferredStyle: .alert)
+        let action = UIAlertAction(title: titleMessageButton,
+                                   style: .default)
+        
+        alertViewController.accessibilityElements = [titleMessage,
+                                                     message,
+                                                     titleMessageButton]
+        
         alertViewController.addAction(action)
         self.present(alertViewController, animated: true)
     }
