@@ -9,7 +9,11 @@ import UIKit
 
 extension UIAccessibility {
     
-    static func announce(_ text: String) {
-        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: text)
+    enum AnnouncementText: String {
+        case button = "Botão Clicado"
+    }
+    
+    static func announce(_ value: AnnouncementText) {
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: value)
     }
 }

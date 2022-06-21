@@ -33,8 +33,7 @@ extension ActivityDetailsViewController: ActivityDetailsViewDelegate {
 
     func didPressReportButton() {
         
-        let value: String = "Botão clicado"
-        UIAccessibility.announce(value)
+        UIAccessibility.announce(.button.rawValue)
         
         let alertViewController = UIAlertController(title: titleMessage,
                                                     message: message,
