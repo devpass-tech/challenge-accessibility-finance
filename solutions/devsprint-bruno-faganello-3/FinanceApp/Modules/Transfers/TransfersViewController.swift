@@ -8,6 +8,9 @@
 import UIKit
 
 class TransfersViewController: UIViewController {
+    
+    private let titleAlert = "Contact selection"
+    private let messageAlert = "A contact was selected"
 
     lazy var transferView: TransfersView = {
 
@@ -45,8 +48,13 @@ extension TransfersViewController: ContactListViewControllerDelegate {
 
         self.dismiss(animated: true)
 
-        let alertViewController = UIAlertController(title: "Contact selection", message: "A contact was selected", preferredStyle: .alert)
+        let alertViewController = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)
+        alertViewController.view.accessibilityIdentifier = "custom_alert"
+        alertViewController.view.accessibilityValue = "\(titleAlert)-\(messageAlert)"
+        
+        
         let action = UIAlertAction(title: "Thanks", style: .default)
+        action.accessibilityHint = "Return to the transfer screen"
         alertViewController.addAction(action)
         self.present(alertViewController, animated: true)
     }
