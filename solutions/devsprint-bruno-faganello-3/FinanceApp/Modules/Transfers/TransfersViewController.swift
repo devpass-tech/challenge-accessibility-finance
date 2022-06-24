@@ -7,19 +7,24 @@
 
 import UIKit
 
-class TransfersViewController: UIViewController {
-
-    lazy var transferView: TransfersView = {
-
+final class TransfersViewController: UIViewController {
+    
+    // MARK: - Private Properties
+    
+    private lazy var transferView: TransfersView = {
         let transferView = TransfersView()
         transferView.delegate = self
         return transferView
     }()
+    
+    // MARK: - LifeCycle
 
     override func loadView() {
         self.view = transferView
     }
 }
+
+// MARK: - Extension
 
 extension TransfersViewController: TransferViewDelegate {
 
@@ -45,8 +50,11 @@ extension TransfersViewController: ContactListViewControllerDelegate {
 
         self.dismiss(animated: true)
 
-        let alertViewController = UIAlertController(title: "Contact selection", message: "A contact was selected", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Thanks", style: .default)
+        let alertViewController = UIAlertController(title: "Contact selection",
+                                                    message: "A contact was selected",
+                                                    preferredStyle: .alert)
+        let action = UIAlertAction(title: "Thanks",
+                                   style: .default)
         alertViewController.addAction(action)
         self.present(alertViewController, animated: true)
     }
