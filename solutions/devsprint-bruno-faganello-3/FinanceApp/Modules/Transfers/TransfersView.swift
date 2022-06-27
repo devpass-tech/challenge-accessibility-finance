@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 protocol TransferViewDelegate: AnyObject {
-
+    
+    func didEditTextField(text: String)
     func didPressChooseContactButton()
     func didPressTransferButton(with amount: String)
 }
@@ -38,7 +39,8 @@ final class TransfersView: UIView {
         textField.placeholder = "$0"
         
         textField.accessibilityTraits = .searchField
-        textField.accessibilityValue = textField.text
+
+        textField.addTarget(self, action: #selector(tapped), for: .editingChanged)
         
         textField.font = UIFont.boldSystemFont(ofSize: 34)
         textField.textAlignment = .center
@@ -116,6 +118,12 @@ final class TransfersView: UIView {
     }
     
     // MARK: - Actions
+    
+    @objc
+    func tapped() {
+        guard let value = amountTextField.text else { return }
+        delegate?.didEditTextField(text: value)
+    }
 
     @objc
     func chooseContact() {

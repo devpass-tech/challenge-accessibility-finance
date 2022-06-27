@@ -24,10 +24,18 @@ final class TransfersViewController: UIViewController {
     }
 }
 
-// MARK: - Extension
+// MARK: - Extension 0203Naires
 
 extension TransfersViewController: TransferViewDelegate {
-
+    func didEditTextField(text: String) {
+        
+        var valueConverted: String {
+            return "\(text) reais"
+        }
+        
+        UIAccessibility.post(notification: .announcement, argument: valueConverted)
+    }
+    
     func didPressChooseContactButton() {
 
         let contactListViewController = ContactListViewController()
