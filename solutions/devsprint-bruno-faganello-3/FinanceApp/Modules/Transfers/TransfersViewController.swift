@@ -24,7 +24,7 @@ final class TransfersViewController: UIViewController {
     }
 }
 
-// MARK: - Extension 0203Naires
+// MARK: - Extension
 
 extension TransfersViewController: TransferViewDelegate {
     func didEditTextField(text: String) {
