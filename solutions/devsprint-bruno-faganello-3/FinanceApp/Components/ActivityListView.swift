@@ -27,6 +27,8 @@ class ActivityListView: UIView {
         tableView.register(ActivityCellView.self, forCellReuseIdentifier: self.cellIdentifier)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
         return tableView
     }()
 
@@ -82,7 +84,11 @@ extension ActivityListView: UITableViewDataSource {
 extension ActivityListView: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ActivityListView.cellSize
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
