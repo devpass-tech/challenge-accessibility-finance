@@ -44,7 +44,8 @@ class ActivityDetailsView: UIView {
         label.accessibilityLabel = "Mall"
         label.isAccessibilityElement = true
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
@@ -56,6 +57,8 @@ class ActivityDetailsView: UIView {
         label.accessibilityLabel = "Shopping"
         label.accessibilityTraits = .staticText
         label.textAlignment = .center
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
@@ -68,30 +71,33 @@ class ActivityDetailsView: UIView {
     let priceLabel: UILabel = {
 
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = true
         label.text = "$100"
         label.accessibilityLabel = "100 reais"
         label.isAccessibilityElement = true
         label.accessibilityTraits = .staticText
-        label.font = UIFont.boldSystemFont(ofSize: 34)
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
     let timeLabel: UILabel = {
 
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = true
         label.text = "8:57 AM"
         label.accessibilityLabel = "8:57 da manhã"
         label.isAccessibilityElement = true
         label.accessibilityTraits = .staticText
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
     lazy var reportIssueButton: UIButton = {
 
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = true
         button.setTitle("Report a issue", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
