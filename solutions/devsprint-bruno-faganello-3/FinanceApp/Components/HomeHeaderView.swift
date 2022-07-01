@@ -25,7 +25,8 @@ class HomeHeaderView: UIView {
 
         let label = UILabel()
         label.text = "$15,459.27"
-        label.font = UIFont.boldSystemFont(ofSize: 34)
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
@@ -42,7 +43,8 @@ class HomeHeaderView: UIView {
 
         let label = UILabel()
         label.text = "Savings"
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
@@ -51,6 +53,8 @@ class HomeHeaderView: UIView {
         let label = UILabel()
         label.text = "$100.00"
         label.textColor = .lightGray
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
@@ -68,6 +72,8 @@ class HomeHeaderView: UIView {
         let label = UILabel()
         label.text = "Spending"
         label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFont.preferredFont(forTextStyle: .body)
         return label
     }()
 
@@ -76,6 +82,8 @@ class HomeHeaderView: UIView {
         let label = UILabel()
         label.text = "$100.00"
         label.textColor = .lightGray
+        label.adjustsFontForContentSizeCategory = true
+        label.font = UIFont.preferredFont(forTextStyle: .body)
         return label
     }()
 

@@ -7,22 +7,35 @@
 
 import UIKit
 
-class TransfersViewController: UIViewController {
-
-    lazy var transferView: TransfersView = {
-
+final class TransfersViewController: UIViewController {
+    
+    // MARK: - Private Properties
+    
+    private lazy var transferView: TransfersView = {
         let transferView = TransfersView()
         transferView.delegate = self
         return transferView
     }()
+    
+    // MARK: - LifeCycle
 
     override func loadView() {
         self.view = transferView
     }
 }
 
-extension TransfersViewController: TransferViewDelegate {
+// MARK: - Extension
 
+extension TransfersViewController: TransferViewDelegate {
+    func didEditTextField(text: String) {
+        
+        var valueConverted: String {
+            return "\(text) reais"
+        }
+        
+        UIAccessibility.post(notification: .announcement, argument: valueConverted)
+    }
+    
     func didPressChooseContactButton() {
 
         let contactListViewController = ContactListViewController()
@@ -45,8 +58,11 @@ extension TransfersViewController: ContactListViewControllerDelegate {
 
         self.dismiss(animated: true)
 
-        let alertViewController = UIAlertController(title: "Contact selection", message: "A contact was selected", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Thanks", style: .default)
+        let alertViewController = UIAlertController(title: "Contact selection",
+                                                    message: "A contact was selected",
+                                                    preferredStyle: .alert)
+        let action = UIAlertAction(title: "Thanks",
+                                   style: .default)
         alertViewController.addAction(action)
         self.present(alertViewController, animated: true)
     }

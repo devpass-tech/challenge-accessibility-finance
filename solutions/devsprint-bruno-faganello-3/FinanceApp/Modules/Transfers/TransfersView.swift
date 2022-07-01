@@ -9,16 +9,21 @@ import Foundation
 import UIKit
 
 protocol TransferViewDelegate: AnyObject {
-
+    
+    func didEditTextField(text: String)
     func didPressChooseContactButton()
     func didPressTransferButton(with amount: String)
 }
 
-class TransfersView: UIView {
-
+final class TransfersView: UIView {
+    
+    // MARK: - Public Properties
+    
     weak var delegate: TransferViewDelegate?
 
-    let stackView: UIStackView = {
+    // MARK: - Private Properties
+    
+    private let stackView: UIStackView = {
 
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,27 +33,34 @@ class TransfersView: UIView {
         return stackView
     }()
 
-    let amountTextField: UITextField = {
+    private let amountTextField: UITextField = {
 
         let textField = UITextField()
         textField.placeholder = "$0"
+        
+        textField.accessibilityTraits = .searchField
+
+        textField.addTarget(self, action: #selector(tapped), for: .editingChanged)
+        
         textField.font = UIFont.boldSystemFont(ofSize: 34)
         textField.textAlignment = .center
         textField.keyboardType = .numberPad
         return textField
     }()
 
-    lazy var chooseContactButton: UIButton = {
+    private  lazy var chooseContactButton: UIButton = {
 
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Choose contact", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
+        button.accessibilityValue = "Botão escolher contato"
+        button.accessibilityTraits = .button
         button.addTarget(self, action: #selector(chooseContact), for: .touchUpInside)
         return button
     }()
 
-    lazy var transferButton: UIButton = {
+    private lazy var transferButton: UIButton = {
 
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -56,21 +68,44 @@ class TransfersView: UIView {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 14
+        button.accessibilityValue = "Botão transferência"
+        button.accessibilityTraits = .button
         button.addTarget(self, action: #selector(transfer), for: .touchUpInside)
         return button
     }()
+    
+    // MARK: - Init
 
     init() {
         super.init(frame: .zero)
-
+        setup()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Setup
+    
+    private func setup() {
+        setupBackgroundColor()
+        setupViews()
+        setupConstraints()
+    }
+    
+    private func setupBackgroundColor() {
         backgroundColor = .white
-
+    }
+    
+    private func setupViews() {
         stackView.addArrangedSubview(amountTextField)
         stackView.addArrangedSubview(chooseContactButton)
-
         addSubview(stackView)
         addSubview(transferButton)
-
+    }
+    
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor),
@@ -81,20 +116,22 @@ class TransfersView: UIView {
             transferButton.heightAnchor.constraint(equalToConstant: 56)
         ])
     }
+    
+    // MARK: - Actions
+    
+    @objc
+    func tapped() {
+        guard let value = amountTextField.text else { return }
+        delegate?.didEditTextField(text: value)
+    }
 
     @objc
     func chooseContact() {
-
         delegate?.didPressChooseContactButton()
     }
 
     @objc
     func transfer() {
-
         delegate?.didPressTransferButton(with: amountTextField.text ?? "0")
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

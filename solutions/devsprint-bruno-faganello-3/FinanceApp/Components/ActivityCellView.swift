@@ -16,6 +16,7 @@ class ActivityCellView: UITableViewCell {
        stack.alignment = .center
        stack.isLayoutMarginsRelativeArrangement = true
        stack.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+       stack.autoresizingMask = [.flexibleRightMargin, .flexibleLeftMargin, .flexibleBottomMargin]
        return stack
     }()
 
@@ -24,6 +25,7 @@ class ActivityCellView: UITableViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.spacing = 8
+        stack.autoresizingMask = [.flexibleRightMargin, .flexibleLeftMargin, .flexibleBottomMargin]
         return stack
     }()
 
@@ -40,8 +42,9 @@ class ActivityCellView: UITableViewCell {
     lazy var activityNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 17)
         label.text = "Mall"
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
@@ -49,8 +52,9 @@ class ActivityCellView: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .gray
-        label.font = UIFont.systemFont(ofSize: 14)
         label.text = "$100.00 • 8:57 AM"
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
@@ -60,6 +64,8 @@ class ActivityCellView: UITableViewCell {
 
         addSubviews()
         configureConstraints()
+        self.mainStackView.addArrangedSubview(labelsStackView)
+
     }
 
     required init?(coder: NSCoder) {

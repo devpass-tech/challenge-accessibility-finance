@@ -24,7 +24,7 @@ class ActivityDetailsView: UIView {
         stackView.axis = .vertical
         stackView.spacing = 8
         stackView.distribution = .fill
-        
+        stackView.isAccessibilityElement = false
         return stackView
     }()
 
@@ -41,8 +41,10 @@ class ActivityDetailsView: UIView {
 
         let label = UILabel()
         label.text = "Mall"
+        label.accessibilityLabel = "Mall"
+        label.isAccessibilityElement = true
         label.textAlignment = .center
-        label.numberOfLines = 0
+
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
         return label
@@ -53,12 +55,16 @@ class ActivityDetailsView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = true
         label.text = "Shopping"
+        label.isAccessibilityElement = true
+        label.accessibilityLabel = "Shopping"
+        label.accessibilityTraits = .staticText
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5
+
         return label
     }()
 
@@ -71,8 +77,11 @@ class ActivityDetailsView: UIView {
     let priceLabel: UILabel = {
 
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = true
         label.text = "$100"
+        label.accessibilityLabel = "100 reais"
+        label.isAccessibilityElement = true
+        label.accessibilityTraits = .staticText
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
         return label
@@ -81,8 +90,12 @@ class ActivityDetailsView: UIView {
     let timeLabel: UILabel = {
 
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = true
         label.text = "8:57 AM"
+        label.accessibilityLabel = "8:57 da manhã"
+        label.isAccessibilityElement = true
+        label.accessibilityTraits = .staticText
+
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
         return label
@@ -91,12 +104,14 @@ class ActivityDetailsView: UIView {
     lazy var reportIssueButton: UIButton = {
 
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = true
         button.setTitle("Report a issue", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 14
         button.addTarget(self, action: #selector(reportButtonPressed), for: .touchUpInside)
+        button.isAccessibilityElement = true
+        button.accessibilityTraits = .button
         return button
     }()
 
@@ -147,7 +162,6 @@ class ActivityDetailsView: UIView {
 
     @objc
     func reportButtonPressed() {
-
         delegate?.didPressReportButton()
     }
 }
