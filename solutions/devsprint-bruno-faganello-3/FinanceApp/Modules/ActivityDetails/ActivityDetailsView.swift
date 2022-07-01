@@ -42,15 +42,23 @@ class ActivityDetailsView: UIView {
         let label = UILabel()
         label.text = "Mall"
         label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.numberOfLines = 0
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
     let categoryLabel: UILabel = {
 
         let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = true
         label.text = "Shopping"
         label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
 
@@ -65,7 +73,8 @@ class ActivityDetailsView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "$100"
-        label.font = UIFont.boldSystemFont(ofSize: 34)
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
@@ -74,6 +83,8 @@ class ActivityDetailsView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "8:57 AM"
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
@@ -110,6 +121,10 @@ class ActivityDetailsView: UIView {
             stackView.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor),
             stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             stackView.bottomAnchor.constraint(equalTo: reportIssueButton.topAnchor),
+
+            categoryLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 70),
+            categoryLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -66),
+            categoryLabel.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor, constant: 30),
 
             priceLabel.centerXAnchor.constraint(equalTo: priceContainerView.centerXAnchor),
             priceLabel.centerYAnchor.constraint(equalTo: priceContainerView.centerYAnchor),
